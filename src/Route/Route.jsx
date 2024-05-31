@@ -3,7 +3,7 @@ import Main from "../layout/Main";
 import Home from "../Pages/Home/Home";
 import Survey from "../Pages/Survey/Survey";
 import Pricing from "../Pages/Pricing/Pricing";
-import Login from "../Pages/Login/Login";
+import Login from "../Pages/Auth/Login";
 
 export const router = createBrowserRouter([
     {

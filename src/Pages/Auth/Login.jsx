@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import login from "../../assets/login.webp";
 import useAuth from "../../hook/useAuth";
 const Login = () => {
@@ -5,10 +6,22 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         googleLogin()
-           .then(res => {
-                console.log(res.user);
+           .then(() => {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Login success",
+                showConfirmButton: false,
+                timer: 1500
+              });
             })
-           .catch(err => console.error(err));
+           .catch(error => Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: error.message,
+            showConfirmButton: false,
+            timer: 1500
+          }));
     }
 
     const handleLogin = (e) => {
@@ -18,10 +31,22 @@ const Login = () => {
         const password = from.password.value;
 
         userLogIn(email, password)
-            .then(res => {
-                console.log(res.user);
-            })
-            .catch(err => console.error(err));
+        .then(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Login success",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        })
+       .catch(error => Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: error.message,
+        showConfirmButton: false,
+        timer: 1500
+      }));
     }
   return (
     <div className=" min-h-screen bg-base-200">
