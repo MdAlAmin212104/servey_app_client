@@ -1,6 +1,10 @@
+
 import { NavLink } from "react-router-dom";
+import useAuth from "../../hook/useAuth";
 
 const Navbar = () => {
+  const {user} = useAuth()
+  console.log(user);
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/survey'>Survey</NavLink></li>
