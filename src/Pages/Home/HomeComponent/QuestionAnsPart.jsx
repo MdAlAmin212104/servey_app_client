@@ -2,7 +2,7 @@ import faq from '../../../assets/faq.png'
 
 const QuestionAnsPart = () => {
   return (
-    <div className="my-8 flex gap-4">
+    <div className="my-8 lg:flex gap-4">
         <div>
         <img src={faq} alt="" className='h-full' />
         </div>

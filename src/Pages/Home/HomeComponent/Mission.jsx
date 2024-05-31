@@ -5,7 +5,7 @@ const Mission = () => {
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img
           src={phone}
-          className="max-w-sm rounded-lg shadow-2xl"
+          className=" rounded-lg shadow-2xl"
         />
         <div>
           <h1 className="text-5xl font-bold">Vim ridens <br />eleifend referrentur eu</h1>
