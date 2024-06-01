@@ -61,7 +61,7 @@ const Navbar = () => {
             <div className="w-10 rounded-full">
               <img
                 alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                src={user?.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"} 
               />
             </div>
           </div>
@@ -79,7 +79,7 @@ const Navbar = () => {
               <a>Settings</a>
             </li>
             <li>
-              <button onClick={()=>logout()}>Logout</button>
+              <button className="btn btn-primary" onClick={()=>logout()}>Logout</button>
             </li>
           </ul>
         </div>

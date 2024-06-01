@@ -1,54 +1,17 @@
 import Swal from "sweetalert2";
 import useAuth from "../../hook/useAuth";
 import login from '../../assets/login.webp'
-import { Link } from "react-router-dom";
-import { FaFacebook, FaGoogle } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import useAxiosCommon from "../../hook/useAxiosCommon";
 const Register = () => {
-    const {googleLogin, createUser, updateUserProfile, facebookLogin}= useAuth();
+    const { createUser, updateUserProfile}= useAuth();
+    const axiosCommon = useAxiosCommon();
+    const navigate = useNavigate();
 
 
 
-    const handleGoogleLogin = () => {
-        googleLogin()
-           .then(() => {
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Login success",
-                showConfirmButton: false,
-                timer: 1500
-              });
-            })
-           .catch(error => Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: error.message,
-            showConfirmButton: false,
-            timer: 1500
-          }));
-    }
-
-    const handleFacebookLogin = () => {
-      facebookLogin()
-        .then(() => {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Login success",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        })
-        .catch((error) =>
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: error.message,
-            showConfirmButton: false,
-            timer: 1500,
-          })
-        );
-    };
+  
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -62,13 +25,29 @@ const Register = () => {
           .then(() => {
             updateUserProfile(name, photo)
               .then(() => {
-                Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "Register success",
-                  showConfirmButton: false,
-                  timer: 1500
-                });
+                const userInfo = {
+                  name,
+                  email,
+                  photo,
+                  role : 'user',
+                }
+                console.log(userInfo);
+                axiosCommon.post('/user', userInfo)
+                   .then(res => {
+                    if(res.data.insertedId){
+                      Swal.fire("user register successfully");
+                      navigate('/')
+                    }
+                    })
+                   .catch(error => {
+                    Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: error.message,
+                      showConfirmButton: false,
+                      timer: 1500
+                    });
+                    })
               })
               .catch(error => {
                 Swal.fire({
@@ -91,6 +70,7 @@ const Register = () => {
           });
     }
 
+  
 
   return (
     <div className=" min-h-screen bg-base-200">
@@ -158,25 +138,9 @@ const Register = () => {
             </div>
           </form>
           <div className="divider mx-8 my-0"></div> 
-          <div className="my-4 flex items-center justify-center gap-8">
-            <button
-                onClick={handleGoogleLogin}
-              aria-label="Login with Google"
-              type="button"
-              >
-              <FaGoogle className="text-3xl"/>
-            </button>
-            <button
-              onClick={handleFacebookLogin}
-              aria-label="Login with Google"
-              type="button"
-              >
-              <FaFacebook className="text-3xl"/>
-            </button>
-            
-          </div>
+          <SocialLogin/>
           <p className="text-xs text-center sm:px-6 text-gray-600 pb-4">
-            Don`t have an account?
+            have an account?
             <Link to='/login'
               rel="noopener noreferrer"
               className="underline text-gray-800 font-bold"
