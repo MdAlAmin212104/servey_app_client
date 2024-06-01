@@ -2,12 +2,10 @@ import Swal from "sweetalert2";
 import login from "../../assets/login.webp";
 import useAuth from "../../hook/useAuth";
 import { Link } from "react-router-dom";
-import { FaFacebook, FaGoogle } from "react-icons/fa";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 const Login = () => {
-  const { userLogIn, googleLogin, facebookLogin } = useAuth();
+  const { userLogIn } = useAuth();
 
-  const handleGoogleLogin = () => {
     
   const handleLogin = (e) => {
     e.preventDefault();
