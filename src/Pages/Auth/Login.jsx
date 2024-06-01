@@ -4,10 +4,31 @@ import useAuth from "../../hook/useAuth";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 const Login = () => {
-  const { userLogIn, googleLogin } = useAuth();
+  const { userLogIn, googleLogin, facebookLogin } = useAuth();
 
   const handleGoogleLogin = () => {
     googleLogin()
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) =>
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: error.message,
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      );
+  };
+  const handleFacebookLogin = () => {
+    facebookLogin()
       .then(() => {
         Swal.fire({
           position: "top-end",
@@ -104,7 +125,7 @@ const Login = () => {
               <FaGoogle className="text-3xl"/>
             </button>
             <button
-                //onClick={handleGoogleLogin}
+              onClick={handleFacebookLogin}
               aria-label="Login with Google"
               type="button"
               >

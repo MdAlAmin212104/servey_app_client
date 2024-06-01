@@ -4,7 +4,7 @@ import login from '../../assets/login.webp'
 import { Link } from "react-router-dom";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 const Register = () => {
-    const {googleLogin, createUser, updateUserProfile}= useAuth();
+    const {googleLogin, createUser, updateUserProfile, facebookLogin}= useAuth();
 
 
 
@@ -27,6 +27,28 @@ const Register = () => {
             timer: 1500
           }));
     }
+
+    const handleFacebookLogin = () => {
+      facebookLogin()
+        .then(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Login success",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        })
+        .catch((error) =>
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: error.message,
+            showConfirmButton: false,
+            timer: 1500,
+          })
+        );
+    };
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -145,7 +167,7 @@ const Register = () => {
               <FaGoogle className="text-3xl"/>
             </button>
             <button
-                //onClick={handleGoogleLogin}
+              onClick={handleFacebookLogin}
               aria-label="Login with Google"
               type="button"
               >
