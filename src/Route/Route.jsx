@@ -5,6 +5,8 @@ import Survey from "../Pages/Survey/Survey";
 import Pricing from "../Pages/Pricing/Pricing";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
+import Dashboard from "../layout/Dashboard";
+import SurveyCreateFrom from "../Pages/Surveyor/SurveyCreateFrom/SurveyCreateFrom";
 
 export const router = createBrowserRouter([
     {
@@ -33,4 +35,14 @@ export const router = createBrowserRouter([
         }
       ]
     },
+    {
+        path : 'dashboard',
+        element : <Dashboard/>,
+        children : [
+            {
+                path : 'create',
+                element : <SurveyCreateFrom/>
+            }
+        ]
+    }
   ]);
