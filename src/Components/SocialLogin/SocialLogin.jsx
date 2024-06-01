@@ -1,19 +1,32 @@
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import useAuth from "../../hook/useAuth";
 import Swal from "sweetalert2";
+import useAxiosCommon from "../../hook/useAxiosCommon";
+import { useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
-    const { googleLogin, facebookLogin } = useAuth()
+    const { googleLogin, facebookLogin } = useAuth();
+    const axiosCommon = useAxiosCommon();
+    const navigate = useNavigate()
     const handleGoogleLogin = () => {
         googleLogin()
-           .then(() => {
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Login success",
-                showConfirmButton: false,
-                timer: 1500
-              });
+           .then(res => {
+            navigate('/')
+                const {displayName, email, photoURL }= res.user;
+                const userInfo = {
+                    name : displayName,
+                    email,
+                    photoURL,
+                    role : 'user',
+                } 
+                axiosCommon.post('/user', userInfo)
+                    .then(res => {
+                        if(res.data.insertedId){
+                            Swal.fire("user information save successfully");
+                            
+                          }
+                    })
+              
             })
            .catch(error => Swal.fire({
             position: "top-end",
@@ -25,15 +38,22 @@ const SocialLogin = () => {
     }
 
     const handleFacebookLogin = () => {
-      facebookLogin()
-        .then(() => {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Login success",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+        facebookLogin()
+        .then(res => {
+            navigate('/')
+            const {displayName, email, photoURL }= res.user;
+                const userInfo = {
+                    name : displayName,
+                    email,
+                    photoURL,
+                    role : 'user',
+                } 
+            axiosCommon.post('/user', userInfo)
+            .then(res => {
+                if(res.data.insertedId){
+                    Swal.fire("user information save successfully");
+                  }
+            })
         })
         .catch((error) =>
           Swal.fire({

@@ -3,52 +3,12 @@ import login from "../../assets/login.webp";
 import useAuth from "../../hook/useAuth";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 const Login = () => {
   const { userLogIn, googleLogin, facebookLogin } = useAuth();
 
   const handleGoogleLogin = () => {
-    googleLogin()
-      .then(() => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Login success",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch((error) =>
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: error.message,
-          showConfirmButton: false,
-          timer: 1500,
-        })
-      );
-  };
-  const handleFacebookLogin = () => {
-    facebookLogin()
-      .then(() => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Login success",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch((error) =>
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: error.message,
-          showConfirmButton: false,
-          timer: 1500,
-        })
-      );
-  };
-
+    
   const handleLogin = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -116,23 +76,7 @@ const Login = () => {
             </div>
           </form>
           <div className="divider mx-8 my-0"></div>
-          <div className="my-4 flex items-center justify-center gap-8">
-            <button
-                onClick={handleGoogleLogin}
-              aria-label="Login with Google"
-              type="button"
-              >
-              <FaGoogle className="text-3xl"/>
-            </button>
-            <button
-              onClick={handleFacebookLogin}
-              aria-label="Login with Google"
-              type="button"
-              >
-              <FaFacebook className="text-3xl"/>
-            </button>
-            
-          </div>
+          <SocialLogin/>
           <p className="text-xs text-center sm:px-6 text-gray-600 pb-4">
             Don`t have an account?
             <Link to='/register'

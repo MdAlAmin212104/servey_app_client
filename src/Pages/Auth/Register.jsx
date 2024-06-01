@@ -31,7 +31,6 @@ const Register = () => {
                   photo,
                   role : 'user',
                 }
-                console.log(userInfo);
                 axiosCommon.post('/user', userInfo)
                    .then(res => {
                     if(res.data.insertedId){
