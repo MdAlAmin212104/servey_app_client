@@ -9,6 +9,7 @@ import Dashboard from "../layout/Dashboard";
 import SurveyCreateFrom from "../Pages/Surveyor/SurveyCreateFrom/SurveyCreateFrom";
 import SurveyorTable from "../Pages/Surveyor/SurveyorTable/SurveyorTable";
 import SurveyorUpdateFrom from "../Pages/Surveyor/SurveyorUpdateFrom/SurveyorUpdateFrom";
+import SurveyDetails from "../Pages/Survey/SurveyComponent/SurveyDetails";
 
 
 export const router = createBrowserRouter([
@@ -36,6 +37,12 @@ export const router = createBrowserRouter([
             path : '/register',
             element : <Register/>
         },
+        {   
+            path : '/surveyDetails/:id',
+            element : <SurveyDetails/>,
+            loader : ({ params }) => fetch(`${import.meta.env.VITE_URL}/survey/${params.id}`)
+
+        }
         
       ]
     },
@@ -54,7 +61,7 @@ export const router = createBrowserRouter([
             {
                 path : 'surveyUpdate/:id',
                 element : <SurveyorUpdateFrom/>,
-                loader : ({ params }) => fetch(`http://localhost:5000/survey/${params.id}`)
+                loader : ({ params }) => fetch(`${import.meta.env.VITE_URL}/survey/${params.id}`)
             }, 
              
         ]

@@ -1,8 +1,9 @@
+import SurveyCart from "./SurveyComponent/SurveyCart";
 
 const Survey = () => {
     return (
         <div>
-            <h1>this is survey Section</h1>
+            <SurveyCart/>
         </div>
     );
 };

@@ -45,7 +45,7 @@ const Slider = () => {
 
           {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
-            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> <Link to='/dashboard/create'>From</Link></nav>
+            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> <Link to='/dashboard/create'>create Survey</Link></nav>
             <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> <Link to='/dashboard/surveyList'>Survey List</Link></nav>
             <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> <Link to='/dashboard/create'>From</Link></nav>
           </div>
