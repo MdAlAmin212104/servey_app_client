@@ -10,6 +10,7 @@ import SurveyCreateFrom from "../Pages/Surveyor/SurveyCreateFrom/SurveyCreateFro
 import SurveyorTable from "../Pages/Surveyor/SurveyorTable/SurveyorTable";
 import SurveyorUpdateFrom from "../Pages/Surveyor/SurveyorUpdateFrom/SurveyorUpdateFrom";
 import SurveyDetails from "../Pages/Survey/SurveyComponent/SurveyDetails";
+import Payment from "../Pages/Payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
             element : <SurveyDetails/>,
             loader : ({ params }) => fetch(`${import.meta.env.VITE_URL}/survey/${params.id}`)
 
+        },
+        {
+            path : '/payment',
+            element: <Payment/>
         }
         
       ]
