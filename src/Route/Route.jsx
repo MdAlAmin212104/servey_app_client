@@ -14,6 +14,8 @@ import Payment from "../Pages/Payment/Payment";
 import PrivateRoutes from "../Private/PrivateRoutes";
 import DashboardHome from "../Pages/Dashboard/DashboardHome";
 import ManageUser from "../Pages/Admin/ManageUser/ManageUser";
+import PaymentList from "../Pages/Admin/PaymentList/PaymentList";
+import SurveyList from "../Pages/Admin/SurveyList/SurveyList";
 
 
 export const router = createBrowserRouter([
@@ -68,6 +70,14 @@ export const router = createBrowserRouter([
             {
                 path : 'managementUsers',
                 element : <ManageUser/>
+            },
+            {
+                path : 'payment',
+                element : <PaymentList/>
+            },
+            {
+                path : 'survey',
+                element : <SurveyList/>
             },
 
             // surveyor routes

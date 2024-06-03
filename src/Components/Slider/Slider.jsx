@@ -22,7 +22,9 @@ const Slider = () => {
         case isAdmin:
             text = <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
             <Link to='/dashboard/adminHome'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> Admin Home</nav></Link>
-            <Link to='/dashboard/managementUsers'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> Manage user</nav></Link>
+            <Link to='/dashboard/managementUsers'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">Manage user</nav></Link>
+            <Link to='/dashboard/payment'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">Payment</nav></Link>
+            <Link to='/dashboard/survey'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">Survey List</nav></Link>
           </div>;
             break;
         // case user.isSurveyor:

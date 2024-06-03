@@ -1,23 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../hook/useAuth";
+
 import useAxiosCommon from "../../../hook/useAxiosCommon";
 import update from '../../../assets/update.png'
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useSurvey from "../../../hook/useSurvey";
 
 const SurveyorTable = () => {
-  const { user } = useAuth();
   const axiosCommon = useAxiosCommon();
+  const [ survey, refetch] = useSurvey();
 
 
-  const { data: survey = [], refetch } = useQuery({
-    queryKey: ["survey", user?.email],
-    queryFn: async () => {
-      const res = await axiosCommon.get(`/survey?email=${user?.email}`);
-      return res.data;
-    },
-  });
+
   
   const handleDelete = (id) => {
     axiosCommon.delete(`/survey/${id}`)
