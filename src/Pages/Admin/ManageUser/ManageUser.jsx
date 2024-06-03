@@ -1,61 +1,75 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import useUser from "../../../hook/useUser";
-import useAxiosCommon from '../../../hook/useAxiosCommon';
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import useAxiosCommon from "../../../hook/useAxiosCommon";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import UserFilter from "../../../Components/UserFilter/UserFilter";
 
 const ManageUser = () => {
   const [user, refetch] = useUser();
   const [selectedUser, setSelectedUser] = useState(null);
-  const [selectedRole, setSelectedRole] = useState('');
+  const [selectedRole, setSelectedRole] = useState("");
   const axiosCommon = useAxiosCommon();
   const navigate = useNavigate();
 
+
+  
+  // user update role
   const handleClick = (user) => {
     setSelectedUser(user);
     setSelectedRole(user.role);
     document.getElementById("my_modal_5").showModal();
   };
 
+
+
+  // selected role update
   const handleRoleChange = (event) => {
     setSelectedRole(event.target.value);
   };
 
+  // user update role
   const handleUpdateRole = () => {
     const updatedUser = {
-     ...selectedUser,
+      ...selectedUser,
       role: selectedRole,
     };
     console.log(updatedUser);
-    axiosCommon.put('/updateUserRole', updatedUser)
-        .then(res => {
-            if(res.data.modifiedCount > 0){
-                Swal.fire('you user role has been updated');
-                navigate('/dashboard/AdminHome');
-                
-            }
-        })
-        .catch(error => console.error(error));
-    document.getElementById("my_modal_5").close();
-  }
-
-  const handleDelete = (id) => {
-    axiosCommon.delete(`/user/${id}`)
-      .then(res => {
-        if(res.data.deletedCount > 0){
-          Swal.fire('user deleted')
-          refetch()
+    axiosCommon
+      .put("/updateUserRole", updatedUser)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          Swal.fire("you user role has been updated");
+          navigate("/dashboard/AdminHome");
         }
       })
-      .catch(err => console.error(err));
-  }
+      .catch((error) => console.error(error));
+    document.getElementById("my_modal_5").close();
+  };
+
+
+  // user delete 
+  const handleDelete = (id) => {
+    axiosCommon
+      .delete(`/user/${id}`)
+      .then((res) => {
+        if (res.data.deletedCount > 0) {
+          Swal.fire("user deleted");
+          refetch();
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
+  
 
   return (
     <div>
       <h1 className="text-5xl font-bold text-center my-4">
         Total Users {user.length}
       </h1>
+      <UserFilter/>
 
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
@@ -75,7 +89,11 @@ const ManageUser = () => {
               <option value="surveyor">surveyor</option>
             </select>
           </p>
-          <div><button onClick={handleUpdateRole} className='btn btn-success'>Update role</button></div>
+          <div>
+            <button onClick={handleUpdateRole} className="btn btn-success">
+              Update role
+            </button>
+          </div>
           <div className="modal-action">
             <form method="dialog">
               <button className="btn">Close</button>
@@ -104,7 +122,10 @@ const ManageUser = () => {
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img src={user.photo} alt="Avatar Tailwind CSS Component" />
+                        <img
+                          src={user.photo}
+                          alt="Avatar Tailwind CSS Component"
+                        />
                       </div>
                     </div>
                   </div>
@@ -120,7 +141,10 @@ const ManageUser = () => {
                   </button>
                 </th>
                 <th>
-                  <button onClick={()=> handleDelete(user._id)} className="btn btn-ghost ">
+                  <button
+                    onClick={() => handleDelete(user._id)}
+                    className="btn btn-ghost "
+                  >
                     <MdDelete className="text-3xl" />
                   </button>
                 </th>
