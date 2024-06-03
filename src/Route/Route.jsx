@@ -16,6 +16,8 @@ import DashboardHome from "../Pages/Dashboard/DashboardHome";
 import ManageUser from "../Pages/Admin/ManageUser/ManageUser";
 import PaymentList from "../Pages/Admin/PaymentList/PaymentList";
 import SurveyList from "../Pages/Admin/SurveyList/SurveyList";
+import SurveyorDashboard from "../Pages/Surveyor/SurveyorDashboard/SurveyorDashboard";
+import ProUserHome from "../Pages/ProUser/ProUserHome/ProUserHome";
 
 
 export const router = createBrowserRouter([
@@ -82,6 +84,10 @@ export const router = createBrowserRouter([
 
             // surveyor routes
             {
+                path : 'surveyorHome',
+                element : <SurveyorDashboard/>
+            },
+            {
                 path : 'create',
                 element : <SurveyCreateFrom/>
             },
@@ -94,6 +100,12 @@ export const router = createBrowserRouter([
                 element : <SurveyorUpdateFrom/>,
                 loader : ({ params }) => fetch(`${import.meta.env.VITE_URL}/survey/${params.id}`)
             }, 
+
+            // proUser routes
+            {
+                path : 'proUserHome',
+                element : <ProUserHome/>
+            }
              
         ]
     }

@@ -1,46 +1,88 @@
-
 import { AiOutlineBars } from "react-icons/ai";
 import { GrLogout } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
 import { useState } from "react";
 import useAdmin from "../../hook/useAdmin";
-
+import useSurveyor from "../../hook/useSurveyor";
+import useProUser from "../../hook/useProUser";
 
 const Slider = () => {
   const { logout } = useAuth();
   const [isActive, setActive] = useState(false);
-  const [isAdmin]= useAdmin()
+  const [isAdmin] = useAdmin();
+  const [isSurveyor] = useSurveyor();
+  const [ isProUser ]= useProUser();
   const handleToggle = () => {
     setActive(!isActive);
   };
 
-  console.log(isAdmin); 
-  let text = '';
+  let text = "";
 
-    switch (true) {
-        case isAdmin:
-            text = <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
-            <Link to='/dashboard/adminHome'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> Admin Home</nav></Link>
-            <Link to='/dashboard/managementUsers'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">Manage user</nav></Link>
-            <Link to='/dashboard/payment'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">Payment</nav></Link>
-            <Link to='/dashboard/survey'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">Survey List</nav></Link>
-          </div>;
-            break;
-        // case user.isSurveyor:
-        //     text = 'TextSurveyor';
-        //     break;
-        // case user.isProUser:
-        //     text = 'TextProUser';
-        //     break;
-        default:
-          text = <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
-            <Link to='/dashboard/surveyorHome'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> Surveyor Home</nav></Link>
-            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> <Link to='/dashboard/create'>create Survey</Link></nav>
-            <Link to='/dashboard/surveyList'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> Survey List</nav></Link>
-            <Link to='/dashboard/create'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> From</nav></Link>
-          </div>;
-    }
+  switch (true) {
+    case isAdmin:
+      text = (
+        <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
+          <Link to="/dashboard/adminHome">
+            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
+              {" "}
+              Admin Home
+            </nav>
+          </Link>
+          <Link to="/dashboard/managementUsers">
+            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
+              Manage user
+            </nav>
+          </Link>
+          <Link to="/dashboard/payment">
+            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
+              Payment
+            </nav>
+          </Link>
+          <Link to="/dashboard/survey">
+            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
+              Survey List
+            </nav>
+          </Link>
+        </div>
+      );
+      break;
+    case isSurveyor:
+      text = (
+        <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
+          <Link to="/dashboard/surveyorHome">
+            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
+              {" "}
+              Surveyor Home
+            </nav>
+          </Link>
+          <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
+            {" "}
+            <Link to="/dashboard/create">create Survey</Link>
+          </nav>
+          <Link to="/dashboard/surveyList">
+            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
+              {" "}
+              Survey List
+            </nav>
+          </Link>
+          <Link to="/dashboard/create">
+            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
+              {" "}
+              From
+            </nav>
+          </Link>
+        </div>
+      );
+      break;
+    case isProUser:
+      text = 'TextProUser';
+      break;
+    default:
+      text = (
+        'textNormalUser'
+      );
+  }
 
   return (
     <>
@@ -72,10 +114,8 @@ const Slider = () => {
               <Link to="/">Home</Link>
             </div>
           </div>
-          
-          {
-            text
-          }
+
+          {text}
         </div>
 
         <div>

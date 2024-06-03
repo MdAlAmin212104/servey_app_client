@@ -1,11 +1,32 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
 import useAdmin from "../../hook/useAdmin";
+import useSurveyor from "../../hook/useSurveyor";
+import useProUser from "../../hook/useProUser";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const [ isAdmin ] = useAdmin();
-  console.log(user);
+  const [ isSurveyor ]= useSurveyor();
+  const [ isProUser ]= useProUser();
+
+
+  let text = '';
+
+    switch (true) {
+      case isAdmin:
+          text = <NavLink to="/dashboard/adminHome">Dashboard</NavLink>
+          break;
+        case isSurveyor:
+          text =<NavLink to="/dashboard/surveyorHome">Dashboard</NavLink>;
+          break;
+        case isProUser:
+          text = <NavLink to="/dashboard/proUserHome">Dashboard</NavLink>;
+          break;
+        default:
+          text = <NavLink to="/dashboard">Dashboard</NavLink>
+    }
+
   const links = (
     <>
       <li>
@@ -54,8 +75,7 @@ const Navbar = () => {
       <div className="navbar-end">
         {
           user ? <>
-            { user && isAdmin && <NavLink to="/dashboard/adminHome">Dashboard</NavLink>}
-            {/* {!isAdmin && <li><NavLink to="/dashboard">Dashboard</NavLink> } */}
+          {text}
           <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
