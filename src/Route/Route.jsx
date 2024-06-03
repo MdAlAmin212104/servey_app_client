@@ -11,6 +11,9 @@ import SurveyorTable from "../Pages/Surveyor/SurveyorTable/SurveyorTable";
 import SurveyorUpdateFrom from "../Pages/Surveyor/SurveyorUpdateFrom/SurveyorUpdateFrom";
 import SurveyDetails from "../Pages/Survey/SurveyComponent/SurveyDetails";
 import Payment from "../Pages/Payment/Payment";
+import PrivateRoutes from "../Private/PrivateRoutes";
+import DashboardHome from "../Pages/Dashboard/DashboardHome";
+import ManageUser from "../Pages/Admin/ManageUser/ManageUser";
 
 
 export const router = createBrowserRouter([
@@ -46,15 +49,28 @@ export const router = createBrowserRouter([
         },
         {
             path : '/payment',
-            element: <Payment/>
+            element: <PrivateRoutes><Payment/></PrivateRoutes>
         }
         
       ]
     },
     {
         path : 'dashboard',
-        element : <Dashboard/>,
+        element : <PrivateRoutes><Dashboard/></PrivateRoutes>,
         children : [
+
+            // admin routes
+
+            {
+                path : 'adminHome',
+                element : <DashboardHome/>
+            },
+            {
+                path : 'managementUsers',
+                element : <ManageUser/>
+            },
+
+            // surveyor routes
             {
                 path : 'create',
                 element : <SurveyCreateFrom/>

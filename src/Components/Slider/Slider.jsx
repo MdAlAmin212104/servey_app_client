@@ -1,16 +1,44 @@
+
 import { AiOutlineBars } from "react-icons/ai";
 import { GrLogout } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
 import { useState } from "react";
+import useAdmin from "../../hook/useAdmin";
 
 
 const Slider = () => {
   const { logout } = useAuth();
   const [isActive, setActive] = useState(false);
+  const [isAdmin]= useAdmin()
   const handleToggle = () => {
     setActive(!isActive);
   };
+
+  console.log(isAdmin); 
+  let text = '';
+
+    switch (true) {
+        case isAdmin:
+            text = <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
+            <Link to='/dashboard/adminHome'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> Admin Home</nav></Link>
+            <Link to='/dashboard/managementUsers'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> Manage user</nav></Link>
+          </div>;
+            break;
+        // case user.isSurveyor:
+        //     text = 'TextSurveyor';
+        //     break;
+        // case user.isProUser:
+        //     text = 'TextProUser';
+        //     break;
+        default:
+          text = <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
+            <Link to='/dashboard/surveyorHome'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> Surveyor Home</nav></Link>
+            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> <Link to='/dashboard/create'>create Survey</Link></nav>
+            <Link to='/dashboard/surveyList'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> Survey List</nav></Link>
+            <Link to='/dashboard/create'><nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> From</nav></Link>
+          </div>;
+    }
 
   return (
     <>
@@ -42,13 +70,10 @@ const Slider = () => {
               <Link to="/">Home</Link>
             </div>
           </div>
-
-          {/* Nav Items */}
-          <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
-            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> <Link to='/dashboard/create'>create Survey</Link></nav>
-            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> <Link to='/dashboard/surveyList'>Survey List</Link></nav>
-            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto"> <Link to='/dashboard/create'>From</Link></nav>
-          </div>
+          
+          {
+            text
+          }
         </div>
 
         <div>

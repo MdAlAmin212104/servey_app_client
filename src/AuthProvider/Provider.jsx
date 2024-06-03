@@ -45,6 +45,7 @@ const Provider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
+            setLoading(false)
         });
         return () => {
             unSubscribe()
@@ -53,9 +54,9 @@ const Provider = ({ children }) => {
 
 
     const authInfo = {
-        userLogIn,
         user,
         loading,
+        userLogIn,
         googleLogin,
         logout,
         createUser,

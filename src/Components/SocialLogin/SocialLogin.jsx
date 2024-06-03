@@ -2,16 +2,18 @@ import { FaFacebook, FaGoogle } from "react-icons/fa";
 import useAuth from "../../hook/useAuth";
 import Swal from "sweetalert2";
 import useAxiosCommon from "../../hook/useAxiosCommon";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
     const { googleLogin, facebookLogin } = useAuth();
     const axiosCommon = useAxiosCommon();
+    const location = useLocation();
     const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/';
     const handleGoogleLogin = () => {
         googleLogin()
            .then(res => {
-            navigate('/')
+            navigate(from, {replace: true})
                 const {displayName, email, photoURL }= res.user;
                 const userInfo = {
                     name : displayName,

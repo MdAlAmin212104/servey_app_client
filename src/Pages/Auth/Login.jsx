@@ -1,10 +1,13 @@
 import Swal from "sweetalert2";
 import login from "../../assets/login.webp";
 import useAuth from "../../hook/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 const Login = () => {
   const { userLogIn } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  
 
     
   const handleLogin = (e) => {
@@ -22,6 +25,8 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        const from = location.state?.from?.pathname || '/';
+        navigate(from, {replace: true})
       })
       .catch((error) =>
         Swal.fire({

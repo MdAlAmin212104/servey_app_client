@@ -1,8 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
+import useAdmin from "../../hook/useAdmin";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const [ isAdmin ] = useAdmin();
   console.log(user);
   const links = (
     <>
@@ -52,7 +54,8 @@ const Navbar = () => {
       <div className="navbar-end">
         {
           user ? <>
-              <NavLink to='/dashboard' className='btn'>Dashboard</NavLink>
+            { user && isAdmin && <NavLink to="/dashboard/adminHome">Dashboard</NavLink>}
+            {/* {!isAdmin && <li><NavLink to="/dashboard">Dashboard</NavLink> } */}
           <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
