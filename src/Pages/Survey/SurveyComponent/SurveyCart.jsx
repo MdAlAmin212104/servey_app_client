@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosCommon from "../../../hook/useAxiosCommon";
 import DisplaySingleCart from "./DisplaySingleCart";
+import useAxiosNotSecure from "../../../hook/useAxiosNotSecure";
 
 const SurveyCart = () => {
-    const axiosCommon = useAxiosCommon();
+    const axiosNotSecure = useAxiosNotSecure()
 
 
     const { data : surveyData = [] } =useQuery({
         queryKey : ['surveyData'],
         queryFn : async () => {
-            const res = await axiosCommon.get('/survey');
+            const res = await axiosNotSecure.get('/survey');
             return res.data;
         }
     })

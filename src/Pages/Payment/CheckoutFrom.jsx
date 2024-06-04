@@ -66,7 +66,7 @@ const CheckoutFrom = () => {
       console.log("paymentIntent intent", paymentIntent);
     }
 
-    if (paymentIntent.status == "succeeded") {
+    if (paymentIntent?.status == "succeeded") {
       console.log("transaction id", paymentIntent.id);
       setTransactionId(paymentIntent.id);
 
@@ -80,7 +80,7 @@ const CheckoutFrom = () => {
 
       const res = await axiosCommon.post("/payment", payment);
       console.log(res.data);
-      if(res.data?.paymentResult.insertedId){
+      if(res.data?.modifiedCount > 0){
         Swal.fire({
           position: "top-end",
           icon: "success",

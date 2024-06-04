@@ -1,12 +1,12 @@
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import useAuth from "../../hook/useAuth";
 import Swal from "sweetalert2";
-import useAxiosCommon from "../../hook/useAxiosCommon";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosNotSecure from "../../hook/useAxiosNotSecure";
 
 const SocialLogin = () => {
     const { googleLogin, facebookLogin } = useAuth();
-    const axiosCommon = useAxiosCommon();
+    const axiosNotSecure = useAxiosNotSecure()
     const location = useLocation();
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || '/';
@@ -18,10 +18,10 @@ const SocialLogin = () => {
                 const userInfo = {
                     name : displayName,
                     email,
-                    photoURL,
+                    photo : photoURL,
                     role : 'user',
                 } 
-                axiosCommon.post('/user', userInfo)
+                axiosNotSecure.post('/user', userInfo)
                     .then(res => {
                         if(res.data.insertedId){
                             Swal.fire("user information save successfully");
@@ -50,7 +50,7 @@ const SocialLogin = () => {
                     photoURL,
                     role : 'user',
                 } 
-            axiosCommon.post('/user', userInfo)
+            axiosNotSecure.post('/user', userInfo)
             .then(res => {
                 if(res.data.insertedId){
                     Swal.fire("user information save successfully");

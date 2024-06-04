@@ -2,13 +2,17 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged,
 import auth from '../Firebase/FirebaseConfig'
 import { createContext, useEffect, useState } from "react";
 import { FacebookAuthProvider } from "firebase/auth/web-extension";
+import useAxiosNotSecure from "../hook/useAxiosNotSecure";
 
 export const AuthProvider = createContext(null)
+
+
 const Provider = ({ children }) => {
-    const [user, setUser] = useState('');
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
     const googleProvider = new GoogleAuthProvider()
     const facebookProvider = new FacebookAuthProvider()
+    const axiosNotSecure = useAxiosNotSecure()
 
 
     const createUser = (email, password) => {
@@ -43,14 +47,28 @@ const Provider = ({ children }) => {
 
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, currentUser => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            setLoading(false)
+            setLoading(false);
+            if(currentUser){
+                const userInfo = { email : currentUser.email };
+                axiosNotSecure.post('/jwt', userInfo)
+                    .then(res => {
+                        localStorage.setItem('access_token', res.data.token);
+                        setLoading(false);
+                        console.log(res.data);
+                    })
+            }else{
+                //remove token(if store token in the client site)
+                localStorage.removeItem('access_token');
+                setLoading(false);
+                
+            }
         });
-        return () => {
-            unSubscribe()
-        };
-    }, [])
+
+        return () => unsubscribe;
+
+    }, [axiosNotSecure])
 
 
     const authInfo = {
