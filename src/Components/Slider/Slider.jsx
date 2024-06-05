@@ -1,6 +1,6 @@
 import { AiOutlineBars } from "react-icons/ai";
 import { GrLogout } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
 import { useState } from "react";
 import useAdmin from "../../hook/useAdmin";
@@ -64,20 +64,25 @@ const Slider = () => {
               Survey List
             </nav>
           </Link>
-          {/* <Link to="/dashboard/create">
-            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
-              From
-            </nav>
-          </Link> */}
         </div>
       );
       break;
     case isProUser:
-      text = 'TextProUser';
+      text = (
+      <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
+      <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/userHome'>userHome</NavLink>
+      <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/participate'>Participate</NavLink>
+      <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/reported'>Reported</NavLink>
+      <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/comments'>Comments</NavLink>
+    </div>);
       break;
     default:
       text = (
-        'textNormalUser'
+        <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
+          <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/userHome'>userHome</NavLink>
+          <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/participate'>Participate</NavLink>
+          <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/reported'>Reported</NavLink>
+        </div>
       );
   }
 

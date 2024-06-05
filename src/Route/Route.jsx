@@ -17,10 +17,13 @@ import ManageUser from "../Pages/Admin/ManageUser/ManageUser";
 import PaymentList from "../Pages/Admin/PaymentList/PaymentList";
 import SurveyList from "../Pages/Admin/SurveyList/SurveyList";
 import SurveyorDashboard from "../Pages/Surveyor/SurveyorDashboard/SurveyorDashboard";
-import ProUserHome from "../Pages/ProUser/ProUserHome/ProUserHome";
 import SurveyorDetailsPage from "../Pages/Surveyor/SurveyorDetailsPage/SurveyorDetailsPage";
 import AdminRoutes from "./AdminRoutes/AdminRoutes";
 import SurveyorRoutes from "./SurveyorRoutes/SurveyorRoutes";
+import UserHome from "../Pages/User/UserDashboard/UserHome";
+import Participate from "../Pages/User/Participate/Participate";
+import Reported from "../Pages/User/Reported/Reported";
+import Comments from "../Pages/ProUser/ProUserHome/Comments/Comments";
 
 
 
@@ -112,10 +115,24 @@ export const router = createBrowserRouter([
                 loader : ({ params }) => fetch(`${import.meta.env.VITE_URL}/survey/${params.id}`)
             },
 
+            // user routes
+            {
+                path : 'userHome',
+                element : <UserHome/>,
+            },
+            {
+                path : 'participate',
+                element : <Participate/>,
+            },
+            {
+                path : 'reported',
+                element : <Reported/>,
+            },
+
             // proUser routes
             {
-                path : 'proUserHome',
-                element : <ProUserHome/>
+                path : 'comments',
+                element : <Comments/>
             }
              
         ]

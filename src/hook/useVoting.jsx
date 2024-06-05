@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosCommon from "./useAxiosCommon";
+import useAxiosNotSecure from "./useAxiosNotSecure";
 
 const useVoting = (id) => {
-    const axiosCommon = useAxiosCommon()
+    const axiosNotSecure = useAxiosNotSecure()
 
     const { data : votingResult = []} =useQuery({
         queryKey : ['votingResult', id],
         queryFn : async ( ) => {
-            const res = await axiosCommon.get(`/voting?survey_id=${id}`);
+            const res = await axiosNotSecure.get(`/voting?survey_id=${id}`);
             //console.log(res.data);
             return res.data;
         }

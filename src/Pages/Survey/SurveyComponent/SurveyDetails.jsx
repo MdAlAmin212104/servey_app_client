@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosCommon from "../../../hook/useAxiosCommon";
 import useAuth from "../../../hook/useAuth";
 import useVoting from "../../../hook/useVoting";
@@ -17,6 +17,7 @@ const SurveyDetails = () => {
   const axiosCommon = useAxiosCommon();
   const { user } = useAuth();
   const votingResult = useVoting(_id);
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (votingResult.length > 0 && user) {
@@ -42,6 +43,9 @@ const SurveyDetails = () => {
     let value = {
       selectedValue: selectedValue == 0
     };
+    if(!user){
+      return navigate('/login')
+    }
 
     const votingInfo = {
       survey_id: _id,

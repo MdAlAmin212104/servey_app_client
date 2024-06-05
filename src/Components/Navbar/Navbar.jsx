@@ -15,16 +15,16 @@ const Navbar = () => {
 
     switch (true) {
       case isAdmin:
-          text = <NavLink to="/dashboard/adminHome">Dashboard</NavLink>
+          text = <NavLink className='btn' to="/dashboard/adminHome">Dashboard</NavLink>
           break;
         case isSurveyor:
-          text =<NavLink to="/dashboard/surveyorHome">Dashboard</NavLink>;
+          text =<NavLink className='btn' to="/dashboard/surveyorHome">Dashboard</NavLink>;
           break;
         case isProUser:
-          text = <NavLink to="/dashboard/proUserHome">Dashboard</NavLink>;
+          text = <NavLink className='btn' to="/dashboard/userHome">Dashboard</NavLink>;
           break;
         default:
-          text = <NavLink to="/dashboard">Dashboard</NavLink>
+          text = <NavLink className='btn' to="/dashboard/userHome">Dashboard</NavLink>
     }
 
   const links = (
