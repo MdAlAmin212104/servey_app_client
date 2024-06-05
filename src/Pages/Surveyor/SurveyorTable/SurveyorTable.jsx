@@ -36,6 +36,7 @@ const SurveyorTable = () => {
             <tr>
               <th>#</th>
               <th>question</th>
+              <th>Details</th>
               <th>DateLink</th>
               <th>update</th>
               <th>Delete</th>
@@ -46,6 +47,7 @@ const SurveyorTable = () => {
                 survey.map((item, idx) => <tr key={idx}>
                 <th>{idx+1}</th>
                 <td>{item.question}</td>
+                <td><button className="btn btn-sm"><Link to={`/dashboard/surveyor/surveys/${item._id}`}>Details</Link> </button></td>
                 <td>{item.date}</td>
                 <td>
                   <Link to={`/dashboard/surveyUpdate/${item._id}`}><img src={update}  className="w-10"/></Link>

@@ -5,7 +5,7 @@ import { UserRoleContext } from "../Components/FilterRole/FilterRole";
 
 const useUser = () => {
     const { role } = useContext(UserRoleContext);
-    console.log(role);
+    //console.log(role);
     const axiosCommon = useAxiosCommon();
 
     const { data : users = [], refetch } = useQuery({

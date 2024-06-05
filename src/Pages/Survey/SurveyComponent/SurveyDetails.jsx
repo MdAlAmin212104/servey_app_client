@@ -1,23 +1,50 @@
 
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import useAxiosCommon from "../../../hook/useAxiosCommon";
+import useAuth from "../../../hook/useAuth";
 
 const SurveyDetails = () => {
-    const [selectedValue, setSelectedValue] = useState(null);
-    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-    const survey = useLoaderData();
-    const { title, category, question, date, desc, surveyEmail, options, timestamp } = survey;
+  const [selectedValue, setSelectedValue] = useState(null);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const survey = useLoaderData();
+  const { _id, title, category, question, date, desc, surveyEmail, options, timestamp } = survey;
+  const axiosCommon = useAxiosCommon();
+  const { user }= useAuth()
+
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+    setIsButtonDisabled(false);
+  };
+
+
+
+  const handleSubmit = () => {
+    let value;
+    if (selectedValue == 0) {
+      value = {
+        selectedValue: true,
+      };
+    } else {
+      value = {
+        selectedValue: false,
+      };
+    }
+    const votingInfo = {
+      survey_id : _id,
+      email : user?.email,
+      name : user.displayName,
+      voting : value.selectedValue,
+
+    }
+    axiosCommon.post('/voting', votingInfo)
+      .then(res => {
+        console.log(res.data);
+      })
   
-
-    const handleChange = (event) => {
-        setSelectedValue(event.target.value);
-        setIsButtonDisabled(false);
-    };
-
-    const handleSubmit = () => {
-        // Implement the submit logic here
-        console.log(`Submitted Value: ${selectedValue}`);
-    };
+    console.log(value.selectedValue);
+  };
 
 
 

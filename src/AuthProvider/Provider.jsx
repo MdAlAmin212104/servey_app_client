@@ -49,14 +49,12 @@ const Provider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            setLoading(false);
             if(currentUser){
                 const userInfo = { email : currentUser.email };
                 axiosNotSecure.post('/jwt', userInfo)
                     .then(res => {
                         localStorage.setItem('access_token', res.data.token);
                         setLoading(false);
-                        console.log(res.data);
                     })
             }else{
                 //remove token(if store token in the client site)

@@ -6,6 +6,7 @@ import { useState } from "react";
 import useAdmin from "../../hook/useAdmin";
 import useSurveyor from "../../hook/useSurveyor";
 import useProUser from "../../hook/useProUser";
+import { FaHome } from "react-icons/fa";
 
 const Slider = () => {
   const { logout } = useAuth();
@@ -52,26 +53,22 @@ const Slider = () => {
         <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
           <Link to="/dashboard/surveyorHome">
             <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
-              {" "}
               Surveyor Home
             </nav>
           </Link>
           <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
-            {" "}
             <Link to="/dashboard/create">create Survey</Link>
           </nav>
           <Link to="/dashboard/surveyList">
             <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
-              {" "}
               Survey List
             </nav>
           </Link>
-          <Link to="/dashboard/create">
+          {/* <Link to="/dashboard/create">
             <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
-              {" "}
               From
             </nav>
-          </Link>
+          </Link> */}
         </div>
       );
       break;
@@ -111,7 +108,7 @@ const Slider = () => {
         <div>
           <div>
             <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto">
-              <Link to="/">Home</Link>
+              <Link to="/"> <button className="btn bg-transparent border-none"><FaHome/>Home</button></Link>
             </div>
           </div>
 

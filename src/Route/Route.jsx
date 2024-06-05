@@ -18,6 +18,7 @@ import PaymentList from "../Pages/Admin/PaymentList/PaymentList";
 import SurveyList from "../Pages/Admin/SurveyList/SurveyList";
 import SurveyorDashboard from "../Pages/Surveyor/SurveyorDashboard/SurveyorDashboard";
 import ProUserHome from "../Pages/ProUser/ProUserHome/ProUserHome";
+import SurveyorDetailsPage from "../Pages/Surveyor/SurveyorDetailsPage/SurveyorDetailsPage";
 
 
 
@@ -84,6 +85,7 @@ export const router = createBrowserRouter([
                 element : <SurveyList/>
             },
 
+
             // surveyor routes
             {
                 path : 'surveyorHome',
@@ -102,6 +104,11 @@ export const router = createBrowserRouter([
                 element : <SurveyorUpdateFrom/>,
                 loader : ({ params }) => fetch(`${import.meta.env.VITE_URL}/survey/${params.id}`)
             }, 
+            {
+                path : 'surveyor/surveys/:id',
+                element : <SurveyorDetailsPage/>,
+                loader : ({ params }) => fetch(`${import.meta.env.VITE_URL}/survey/${params.id}`)
+            },
 
             // proUser routes
             {
