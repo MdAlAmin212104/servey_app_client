@@ -19,6 +19,8 @@ import SurveyList from "../Pages/Admin/SurveyList/SurveyList";
 import SurveyorDashboard from "../Pages/Surveyor/SurveyorDashboard/SurveyorDashboard";
 import ProUserHome from "../Pages/ProUser/ProUserHome/ProUserHome";
 import SurveyorDetailsPage from "../Pages/Surveyor/SurveyorDetailsPage/SurveyorDetailsPage";
+import AdminRoutes from "./AdminRoutes/AdminRoutes";
+import SurveyorRoutes from "./SurveyorRoutes/SurveyorRoutes";
 
 
 
@@ -70,43 +72,43 @@ export const router = createBrowserRouter([
 
             {
                 path : 'adminHome',
-                element : <DashboardHome/>
+                element : <AdminRoutes><DashboardHome/></AdminRoutes>
             },
             {
                 path : 'managementUsers',
-                element : <ManageUser/>
+                element : <AdminRoutes><ManageUser/></AdminRoutes>
             },
             {
                 path : 'payment',
-                element : <PaymentList/>
+                element : <AdminRoutes><PaymentList/></AdminRoutes>
             },
             {
                 path : 'survey',
-                element : <SurveyList/>
+                element : <AdminRoutes><SurveyList/></AdminRoutes>
             },
 
 
             // surveyor routes
             {
                 path : 'surveyorHome',
-                element : <SurveyorDashboard/>
+                element : <SurveyorRoutes><SurveyorDashboard/></SurveyorRoutes>
             },
             {
                 path : 'create',
-                element : <SurveyCreateFrom/>
+                element : <SurveyorRoutes><SurveyCreateFrom/></SurveyorRoutes>
             },
             {
                 path : 'surveyList',
-                element : <SurveyorTable/>
+                element : <SurveyorRoutes><SurveyorTable/></SurveyorRoutes>
             },
             {
                 path : 'surveyUpdate/:id',
-                element : <SurveyorUpdateFrom/>,
+                element : <SurveyorRoutes><SurveyorUpdateFrom/></SurveyorRoutes>,
                 loader : ({ params }) => fetch(`${import.meta.env.VITE_URL}/survey/${params.id}`)
             }, 
             {
                 path : 'surveyor/surveys/:id',
-                element : <SurveyorDetailsPage/>,
+                element : <SurveyorRoutes><SurveyorDetailsPage/></SurveyorRoutes>,
                 loader : ({ params }) => fetch(`${import.meta.env.VITE_URL}/survey/${params.id}`)
             },
 
