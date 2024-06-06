@@ -24,6 +24,7 @@ import UserHome from "../Pages/User/UserDashboard/UserHome";
 import Participate from "../Pages/User/Participate/Participate";
 import Reported from "../Pages/User/Reported/Reported";
 import Comments from "../Pages/ProUser/ProUserHome/Comments/Comments";
+import ProUserRoutes from "./ProUserRoutes/ProUserRoutes";
 
 
 
@@ -132,7 +133,7 @@ export const router = createBrowserRouter([
             // proUser routes
             {
                 path : 'comments',
-                element : <Comments/>
+                element : <ProUserRoutes><Comments/></ProUserRoutes>
             }
              
         ]

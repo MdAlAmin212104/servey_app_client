@@ -3,8 +3,7 @@ import useUserVoting from "../../../hook/useUserVoting";
 const Participate = () => {
   const [participate] = useUserVoting()
 
-  //const survey = participate.survey;
-  console.log(participate);
+  //console.log(participate);
   if (!participate.voting || !Array.isArray(participate.voting)) {
     console.error('Voting data is not an array or is undefined');
     return;
