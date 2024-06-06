@@ -64,6 +64,11 @@ const Slider = () => {
               Survey List
             </nav>
           </Link>
+          <Link to="/dashboard/feedback">
+            <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
+              Feedback
+            </nav>
+          </Link>
         </div>
       );
       break;

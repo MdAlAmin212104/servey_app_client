@@ -5,10 +5,13 @@ import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useSurvey from "../../../hook/useSurvey";
+import useAuth from "../../../hook/useAuth";
 
 const SurveyorTable = () => {
+  const { user } = useAuth()
   const axiosCommon = useAxiosCommon();
-  const [ survey, refetch] = useSurvey();
+  const [ survey, refetch] = useSurvey(user?.email);
+  console.log(survey);
 
 
 

@@ -25,6 +25,7 @@ import Participate from "../Pages/User/Participate/Participate";
 import Reported from "../Pages/User/Reported/Reported";
 import Comments from "../Pages/ProUser/ProUserHome/Comments/Comments";
 import ProUserRoutes from "./ProUserRoutes/ProUserRoutes";
+import SurveyFeedback from "../Pages/Surveyor/SurveyFeedback/SurveyFeedback";
 
 
 
@@ -114,6 +115,11 @@ export const router = createBrowserRouter([
                 path : 'surveyor/surveys/:id',
                 element : <SurveyorRoutes><SurveyorDetailsPage/></SurveyorRoutes>,
                 loader : ({ params }) => fetch(`${import.meta.env.VITE_URL}/survey/${params.id}`)
+            },
+            {
+                path : 'feedback',
+                element : <SurveyorRoutes><SurveyFeedback/></SurveyorRoutes>
+
             },
 
             // user routes

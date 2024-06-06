@@ -208,11 +208,6 @@ const SurveyDetails = () => {
               <input type="submit" className="btn btn-primary" value="Submit" />
             </div>
           </form>
-            {/* <div className="modal-action">
-              <button className="btn" onClick={() => setIsCommentsModalOpen(false)}>
-                Close
-              </button>
-            </div> */}
           </div>
         </dialog>
       )}

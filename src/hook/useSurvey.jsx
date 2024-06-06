@@ -1,15 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "./useAuth";
 import useAxiosNotSecure from "./useAxiosNotSecure";
 
-const useSurvey = () => {
-    const { user } = useAuth();
+const useSurvey = (email) => {
     const axiosNotSecure = useAxiosNotSecure();
   
     const { data: survey = [], refetch } = useQuery({
-      queryKey: ["survey", user?.email],
+      queryKey: ["survey", email],
       queryFn: async () => {
-        const res = await axiosNotSecure.get(`/survey?email=${user?.email}`);
+        const res = await axiosNotSecure.get(`/survey?email=${email}`);
         return res.data?.result;
       },
     });
