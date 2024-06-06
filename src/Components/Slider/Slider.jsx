@@ -75,11 +75,27 @@ const Slider = () => {
     case isProUser:
       text = (
       <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
-      <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/userHome'>userHome</NavLink>
-      <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/participate'>Participate</NavLink>
-      <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/reported'>Reported</NavLink>
-      <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/comments'>Comments</NavLink>
-    </div>);
+        <Link to='/dashboard/userHome'>
+          <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
+            userHome
+          </nav>
+        </Link>
+        <Link to='/dashboard/participate'>
+          <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
+            Participate
+          </nav>
+        </Link>
+        <Link to='/dashboard/reported'>
+          <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
+            Reported
+          </nav>
+        </Link>
+        <Link to='/dashboard/comments'>
+          <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
+            Comments
+          </nav>
+        </Link>
+      </div>);
       break;
     default:
       text = (

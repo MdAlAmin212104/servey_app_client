@@ -26,19 +26,17 @@ const SurveyorDetailsPage = () => {
           </thead>
           <tbody>
             {
-                votingResult.map((item, idx) => <tr key={idx}>
-                    <th>{idx + 1}</th>
-                    <td>{item.email}</td>
-                    <td>{item.name}</td>
-                    <td>
-                        {
-                            item.voting ? 'Yes' : 'No'
-                        }
-                    </td>
-                </tr>)
+              votingResult.map((item, idx) => <tr key={idx}>
+                  <th>{idx + 1}</th>
+                  <td>{item.email}</td>
+                  <td>{item.name}</td>
+                  <td>
+                    {
+                      item.voting ? 'Yes' : 'No'
+                    }
+                  </td>
+              </tr>)
             }
-            
-            
           </tbody>
         </table>
       </div>
