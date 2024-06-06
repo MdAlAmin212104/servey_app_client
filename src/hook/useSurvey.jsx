@@ -10,7 +10,7 @@ const useSurvey = () => {
       queryKey: ["survey", user?.email],
       queryFn: async () => {
         const res = await axiosNotSecure.get(`/survey?email=${user?.email}`);
-        return res.data;
+        return res.data?.result;
       },
     });
 

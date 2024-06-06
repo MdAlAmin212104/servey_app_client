@@ -8,7 +8,7 @@ const useSurveyDate = () => {
         queryKey : ['surveyData'],
         queryFn : async () => {
             const res = await axiosNotSecure.get('/survey');
-            return res.data;
+            return res.data.result;
         }
     })
 
