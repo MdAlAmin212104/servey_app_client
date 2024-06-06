@@ -35,7 +35,7 @@ const ManageUser = () => {
       ...selectedUser,
       role: selectedRole,
     };
-    console.log(updatedUser);
+    //console.log(updatedUser);
     axiosCommon
       .put("/updateUserRole", updatedUser)
       .then((res) => {

@@ -10,7 +10,6 @@ const SurveyFeedback = () => {
     queryKey: ["report", user?.email],
     queryFn: async () => {
       const res = await axiosCommon.get(`/feedback?email=${user?.email}`);
-      console.log(res.data);
       return res.data;
     },
   });

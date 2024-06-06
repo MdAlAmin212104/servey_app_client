@@ -26,6 +26,7 @@ import Reported from "../Pages/User/Reported/Reported";
 import Comments from "../Pages/ProUser/ProUserHome/Comments/Comments";
 import ProUserRoutes from "./ProUserRoutes/ProUserRoutes";
 import SurveyFeedback from "../Pages/Surveyor/SurveyFeedback/SurveyFeedback";
+import SurveyorInfo from "../Pages/Surveyor/SurveyorInfo/SurveyorInfo";
 
 
 
@@ -114,6 +115,11 @@ export const router = createBrowserRouter([
             {
                 path : 'surveyor/surveys/:id',
                 element : <SurveyorRoutes><SurveyorDetailsPage/></SurveyorRoutes>,
+                loader : ({ params }) => fetch(`${import.meta.env.VITE_URL}/survey/${params.id}`)
+            },
+            {
+                path : 'surveyor/info/:id',
+                element : <SurveyorRoutes><SurveyorInfo/></SurveyorRoutes>,
                 loader : ({ params }) => fetch(`${import.meta.env.VITE_URL}/survey/${params.id}`)
             },
             {

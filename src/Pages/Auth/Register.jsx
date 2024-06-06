@@ -20,7 +20,7 @@ const Register = () => {
         const password = from.password.value;
         const name = from.name.value;
         const photo = from.photo.value;
-        console.log({email, password, name, photo});
+        //console.log({email, password, name, photo});
         createUser(email, password)
           .then(() => {
             updateUserProfile(name, photo)

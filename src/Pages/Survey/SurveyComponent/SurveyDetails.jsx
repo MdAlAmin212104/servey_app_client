@@ -95,10 +95,10 @@ const SurveyDetails = () => {
       comment: descInput,
       commentEmail: user?.email,
     }
-    console.log(commentInfo);
+    //console.log(commentInfo);
     axiosCommon.post("/comment", commentInfo)
       .then(res => {
-        console.log(res.data);
+        //console.log(res.data);
         if(res.data.insertedId){
           Swal.fire("Comment submitted successfully");
           setDescInput("");
@@ -117,7 +117,7 @@ const SurveyDetails = () => {
       desc: descInput,
       reporterEmail: user?.email,
     };
-    console.log(surveyInfo);
+    //console.log(surveyInfo);
     axiosCommon.post("/report", surveyInfo).then((res) => {
       if (res.data.insertedId) {
         Swal.fire("Report submitted successfully");

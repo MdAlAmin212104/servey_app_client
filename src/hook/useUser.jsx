@@ -12,7 +12,6 @@ const useUser = () => {
         queryKey : ['users', role],
         queryFn : async () => {
             const res = await axiosCommon.get(`/users?role=${role}`);
-            console.log(res.data);
             return res.data;
         }
     })

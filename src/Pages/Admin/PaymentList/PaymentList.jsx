@@ -10,7 +10,7 @@ const PaymentList = () => {
       return res.data;
     },
   });
-  console.log(paymentData);
+  //console.log(paymentData);
 
   return (
     <div>

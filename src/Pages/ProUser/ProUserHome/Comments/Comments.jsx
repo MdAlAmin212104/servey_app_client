@@ -28,7 +28,7 @@ const Comments = () => {
     const surveyItem = report.survey[index] || {};
     return { ...commentItem, ...surveyItem };
   });
-    console.log(combinedData);
+    //console.log(combinedData);
 
 
     return (

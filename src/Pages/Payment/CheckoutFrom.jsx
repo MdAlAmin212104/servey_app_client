@@ -42,9 +42,9 @@ const CheckoutFrom = () => {
 
     if (error) {
       setError("[error]", error.message);
-      console.log(error.message);
+      //console.log(error.message);
     } else {
-      console.log("[PaymentMethod]", paymentMethod);
+      //console.log("[PaymentMethod]", paymentMethod);
       setError("");
     }
 
@@ -61,13 +61,13 @@ const CheckoutFrom = () => {
       });
 
     if (confirmError) {
-      console.log("confirmation error");
+      //console.log("confirmation error");
     } else {
-      console.log("paymentIntent intent", paymentIntent);
+      //console.log("paymentIntent intent", paymentIntent);
     }
 
     if (paymentIntent?.status == "succeeded") {
-      console.log("transaction id", paymentIntent.id);
+      //console.log("transaction id", paymentIntent.id);
       setTransactionId(paymentIntent.id);
 
       // save payment information to database
@@ -79,7 +79,7 @@ const CheckoutFrom = () => {
       };
 
       const res = await axiosCommon.post("/payment", payment);
-      console.log(res.data);
+      //console.log(res.data);
       if(res.data?.modifiedCount > 0){
         Swal.fire({
           position: "top-end",

@@ -11,7 +11,6 @@ const SurveyorTable = () => {
   const { user } = useAuth()
   const axiosCommon = useAxiosCommon();
   const [ survey, refetch] = useSurvey(user?.email);
-  console.log(survey);
 
 
 
@@ -38,7 +37,8 @@ const SurveyorTable = () => {
           <thead>
             <tr>
               <th>#</th>
-              <th>question</th>
+              <th>Question</th>
+              <th>More Info</th>
               <th>Details</th>
               <th>DateLink</th>
               <th>update</th>
@@ -50,6 +50,7 @@ const SurveyorTable = () => {
                 survey.map((item, idx) => <tr key={idx}>
                 <th>{idx+1}</th>
                 <td>{item.question}</td>
+                <td><button className="btn btn-sm"><Link to={`/dashboard/surveyor/info/${item._id}`}>Info</Link> </button></td>
                 <td><button className="btn btn-sm"><Link to={`/dashboard/surveyor/surveys/${item._id}`}>Details</Link> </button></td>
                 <td>{item.date}</td>
                 <td>

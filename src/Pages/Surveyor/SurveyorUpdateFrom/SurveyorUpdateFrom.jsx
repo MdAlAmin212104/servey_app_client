@@ -7,7 +7,6 @@ const SurveyorUpdateFrom = () => {
     const axiosCommon = useAxiosCommon();
     const navigate = useNavigate()
     const survey = useLoaderData()
-    console.log(survey);
     const { _id, title, category, question, date, desc } = survey;
 
     const handleUpdateSurvey = e => {

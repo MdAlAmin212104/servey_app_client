@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 const SurveyList = () => {
   const [survey, refetch] = useSurvey("");
   const [descInput, setDescInput] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedSurveyId, setSelectedSurveyId] = useState(null);
   const { user }=useAuth()
   const axiosCommon = useAxiosCommon();
@@ -44,11 +45,36 @@ const SurveyList = () => {
     document.getElementById(`my_modal_${itemId._id}`).showModal();
   };
 
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  const filteredSurveyData =
+    selectedCategory === "All"
+      ? survey
+      : survey.filter((item) => item.status === selectedCategory);
+
   return (
     <div>
       <h1 className="text-5xl text-center font-bold my-4">
         Total Survey {survey.length}
       </h1>
+      <div className="form-control w-1/4">
+          <label className="label">
+            <span className="label-text">Filter By Category</span>
+          </label>
+          <select
+            name="category"
+            className="select select-bordered w-full"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+          >
+            <option value="All">Select Category</option>
+            <option value="publish">publish</option>
+            <option value="unpublished">unPublish</option>
+            
+          </select>
+      </div>
 
       {survey.map((item) => (
         <dialog key={item._id} id={`my_modal_${item._id}`} className="modal">
@@ -93,7 +119,7 @@ const SurveyList = () => {
             </tr>
           </thead>
           <tbody>
-            {survey.map((item, idx) => {
+            {filteredSurveyData.map((item, idx) => {
               return (
                 <tr key={item._id}>
                   <td>{idx + 1}</td>
