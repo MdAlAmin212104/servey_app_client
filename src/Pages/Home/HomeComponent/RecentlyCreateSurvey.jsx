@@ -14,10 +14,10 @@ const RecentlyCreateSurvey = () => {
   });
   return (
     <>
-      <h1 className="text-5xl my-6 font-bold text-center text-green-400">
+      <h1 className="md:text-5xl text-3xl my-6 font-bold text-center text-green-400">
         Recently Create Voting Survey
       </h1>
-      <div className="grid md:grid-cols-3 grid-cols-2 gap-4 my-8">
+      <div className="grid md:grid-cols-3 gap-4 my-8">
         {recentSurveys.map((item) => (
           <div key={item._id} className="card bg-base-100 shadow-xl">
             <div className="card-body">

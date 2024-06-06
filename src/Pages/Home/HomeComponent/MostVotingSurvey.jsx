@@ -15,8 +15,8 @@ const MostVotingSurvey = () => {
 
   return (
     <>
-      <h1 className="text-5xl my-6 font-bold text-center text-green-400">Most Voting Survey</h1>
-      <div className="grid md:grid-cols-3 grid-cols-2 gap-4 my-8">
+      <h1 className="md:text-5xl text-3xl my-6 font-bold text-center text-green-400">Most Voting Survey</h1>
+      <div className="grid md:grid-cols-3 gap-4 my-8">
         {mostVotingSurvey.map((item) => (
           <div key={item._id} className="card bg-base-100 shadow-xl">
             <div className="card-body">
