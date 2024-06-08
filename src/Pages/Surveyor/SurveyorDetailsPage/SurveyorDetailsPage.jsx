@@ -48,7 +48,7 @@ const SurveyorDetailsPage = () => {
         onClick={handleToggle}
         className="my-4 px-4 py-2 bg-blue-500 text-white rounded"
       >
-        {showResults ? "Hide Results" : "Show Results"}
+        {showResults ? "Show Table" : "Show PiChart"}
       </button>
 
       {showResults ? (
