@@ -23,7 +23,7 @@ const Slider = () => {
   switch (true) {
     case isAdmin:
       text = (
-        <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
+        <div className="flex flex-col justify-between flex-1 mt-6 space-y-4 dark:text-black">
           <Link to="/dashboard/adminHome">
             <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
               {" "}
@@ -50,7 +50,7 @@ const Slider = () => {
       break;
     case isSurveyor:
       text = (
-        <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
+        <div className="flex flex-col justify-between flex-1 mt-6 space-y-4 dark:text-black">
           <Link to="/dashboard/surveyorHome">
             <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
               Surveyor Home
@@ -74,7 +74,7 @@ const Slider = () => {
       break;
     case isProUser:
       text = (
-      <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
+      <div className="flex flex-col justify-between flex-1 mt-6 space-y-4 dark:text-black">
         <Link to='/dashboard/userHome'>
           <nav className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto">
             userHome
@@ -99,7 +99,7 @@ const Slider = () => {
       break;
     default:
       text = (
-        <div className="flex flex-col justify-between flex-1 mt-6 space-y-4">
+        <div className="flex flex-col justify-between flex-1 mt-6 space-y-4 dark:text-black">
           <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/userHome'>userHome</NavLink>
           <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/participate'>Participate</NavLink>
           <NavLink className="w-full p-2 shadow-lg rounded-lg text-center bg-rose-100 mx-auto" to='/dashboard/reported'>Reported</NavLink>
@@ -133,8 +133,8 @@ const Slider = () => {
       >
         <div>
           <div>
-            <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto">
-              <Link to="/"> <button className="btn bg-transparent border-none"><FaHome/>Home</button></Link>
+            <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto ">
+              <Link to="/"> <button className="btn bg-transparent border-none dark:text-black hover:text-white"><FaHome/>Home</button></Link>
             </div>
           </div>
 
@@ -145,11 +145,11 @@ const Slider = () => {
           <hr />
           <button
             onClick={logout}
-            className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
+            className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform dark:text-black"
           >
             <GrLogout className="w-5 h-5" />
 
-            <span className="mx-4 font-medium">Logout</span>
+            <span className="mx-4 font-medium ">Logout</span>
           </button>
         </div>
       </div>
