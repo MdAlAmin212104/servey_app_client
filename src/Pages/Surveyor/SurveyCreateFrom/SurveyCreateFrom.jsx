@@ -59,9 +59,9 @@ const SurveyCreateFrom = () => {
             </label>
             <select name="category" className="select select-bordered w-full">
             <option defaultValue={''} value="All">Select Category</option>
-            <option value="Customer Satisfaction">Customer Satisfaction</option>
-            <option value="Employee Feedback">Employee Feedback</option>
-            <option value="Product Review">Product Review</option>
+            <option value="Customer_Satisfaction">Customer Satisfaction</option>
+            <option value="Employee_Feedback">Employee Feedback</option>
+            <option value="Product_Review">Product Review</option>
             </select>
           </div>
           <div className="form-control">

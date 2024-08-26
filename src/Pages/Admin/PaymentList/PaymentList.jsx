@@ -5,9 +5,6 @@ const PaymentList = () => {
 
   return (
     <div>
-      <h1 className="text-5xl font-bold text-center my-4">
-        Total Payment {paymentData.length}
-      </h1>
       <div className="overflow-x-auto mx-4">
         <table className="table">
           {/* head */}

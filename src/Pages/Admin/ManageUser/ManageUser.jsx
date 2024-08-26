@@ -66,9 +66,6 @@ const ManageUser = () => {
 
   return (
     <div>
-      <h1 className="text-5xl font-bold text-center my-4">
-        Total Users {user.length}
-      </h1>
       <UserFilter/>
 
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">

@@ -56,9 +56,6 @@ const SurveyList = () => {
 
   return (
     <div>
-      <h1 className="text-5xl text-center font-bold my-4">
-        Total Survey {survey.length}
-      </h1>
       <div className="form-control w-1/4">
           <label className="label">
             <span className="label-text">Filter By Category</span>
