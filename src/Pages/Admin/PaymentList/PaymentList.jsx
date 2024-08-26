@@ -1,16 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosCommon from "../../../hook/useAxiosCommon";
+import usePaymentData from "../../../hook/usePaymentData";
 
 const PaymentList = () => {
-  const axiosCommon = useAxiosCommon();
-  const { data: paymentData = [] } = useQuery({
-    queryKey: ["payment"],
-    queryFn: async () => {
-      const res = await axiosCommon.get("/payment");
-      return res.data;
-    },
-  });
-  //console.log(paymentData);
+  const [paymentData] = usePaymentData();
 
   return (
     <div>
