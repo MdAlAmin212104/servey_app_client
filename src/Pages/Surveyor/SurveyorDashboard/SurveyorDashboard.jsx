@@ -1,8 +1,10 @@
+import useAuth from "../../../hook/useAuth";
 
 const SurveyorDashboard = () => {
+    const { user } = useAuth()
     return (
         <div>
-            <h1>this is surveyor dashboard home</h1>
+            <h1 className="text-xl sm:text-2xl md:text-4xl font-bold">Hi, {user.displayName}</h1>
         </div>
     );
 };
