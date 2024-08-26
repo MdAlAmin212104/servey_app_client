@@ -6,26 +6,41 @@ import useProUser from "../../hook/useProUser";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
-  const [ isAdmin ] = useAdmin();
-  const [ isSurveyor ]= useSurveyor();
-  const [ isProUser ]= useProUser();
+  const [isAdmin] = useAdmin();
+  const [isSurveyor] = useSurveyor();
+  const [isProUser] = useProUser();
 
+  let text = "";
 
-  let text = '';
-
-    switch (true) {
-      case isAdmin:
-          text = <NavLink className='btn' to="/dashboard/adminHome">Dashboard</NavLink>
-          break;
-        case isSurveyor:
-          text =<NavLink className='btn' to="/dashboard/surveyorHome">Dashboard</NavLink>;
-          break;
-        case isProUser:
-          text = <NavLink className='btn' to="/dashboard/userHome">Dashboard</NavLink>;
-          break;
-        default:
-          text = <NavLink className='btn' to="/dashboard/userHome">Dashboard</NavLink>
-    }
+  switch (true) {
+    case isAdmin:
+      text = (
+        <NavLink className="" to="/dashboard/adminHome">
+          Dashboard
+        </NavLink>
+      );
+      break;
+    case isSurveyor:
+      text = (
+        <NavLink className="" to="/dashboard/surveyorHome">
+          Dashboard
+        </NavLink>
+      );
+      break;
+    case isProUser:
+      text = (
+        <NavLink className="" to="/dashboard/userHome">
+          Dashboard
+        </NavLink>
+      );
+      break;
+    default:
+      text = (
+        <NavLink className="" to="/dashboard/userHome">
+          Dashboard
+        </NavLink>
+      );
+  }
 
   const links = (
     <>
@@ -73,35 +88,43 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        {
-          user ? <>
-          {text}
-          <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                
-                src={user.photoURL || "https://lh3.googleusercontent.com/a/ACg8ocKfSrgZFBvoQ6s12ZB8gHSg3E625KGpnaiYthDiKIfNqh1g62wg=s96-c"} 
-              />
+        {user ? (
+          <>
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img
+                    src={
+                      user.photoURL ||
+                      "https://lh3.googleusercontent.com/a/ACg8ocKfSrgZFBvoQ6s12ZB8gHSg3E625KGpnaiYthDiKIfNqh1g62wg=s96-c"
+                    }
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 space-y-4"
+              >
+                <li>
+                  <button className="btn btn-primary">{text}</button>
+                </li>
+                <li>
+                  <button className="btn btn-primary" onClick={() => logout()}>
+                    Logout
+                  </button>
+                </li>
+              </ul>
             </div>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <button className="btn btn-primary" onClick={()=>logout()}>Logout</button>
-            </li>
-          </ul>
-        </div>
           </>
-          : <Link to ='/login' className="btn btn-primary">Login</Link>
-        }
-      
+        ) : (
+          <Link to="/login" className="btn btn-primary">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
